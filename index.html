@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="The personal portfolio of Israel Ogundipe, an aspiring web developer.">
+
+    <title>Israel Ogundipe | Personal Portfolio</title>
+
+    <style>
+
+        /* =========================
+           1. GENERAL STYLING
+        ========================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 20px;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0f172a;
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-wrap: break-word;
+        }
+
+        a:focus-visible,
+        button:focus-visible,
+        input:focus-visible,
+        textarea:focus-visible {
+            outline: 3px solid #38bdf8;
+            outline-offset: 4px;
+        }
+
+        .skip-link {
+            position: absolute;
+            left: -9999px;
+            top: 10px;
+            background: white;
+            color: black;
+            padding: 10px;
+            z-index: 1000;
+        }
+
+        .skip-link:focus {
+            left: 10px;
+        }
+
+        /* =========================
+           2. HEADER AND FLEXBOX NAV
+        ========================= */
+
+        header {
+            background-color: #1e293b;
+            padding: 20px 5%;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        nav h2 {
+            color: #38bdf8;
+        }
+
+        nav ul {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+            list-style: none;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #38bdf8;
+        }
+
+        /* =========================
+           3. HERO SECTION
+        ========================= */
+
+        .hero {
+            min-height: 70vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 60px 5%;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            line-height: 1.2;
+        }
+
+        .hero span {
+            color: #38bdf8;
+        }
+
+        .hero h3 {
+            margin-top: 15px;
+            color: #cbd5e1;
+        }
+
+        .hero p {
+            margin: 15px 0;
+            color: #cbd5e1;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #0284c7;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 6px;
+            text-decoration: none;
+            margin-top: 15px;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #0369a1;
+        }
+
+        /* =========================
+           4. GENERAL SECTIONS
+        ========================= */
+
+        section:not(.hero) {
+            padding: 65px 5%;
+        }
+
+        section h2 {
+            color: #38bdf8;
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 2rem;
+        }
+
+        /* =========================
+           5. ABOUT SECTION
+        ========================= */
+
+        #about p {
+            max-width: 700px;
+            margin: auto;
+            text-align: center;
+            color: #cbd5e1;
+        }
+
+        /* =========================
+           6. SKILLS - FLEXBOX
+        ========================= */
+
+        .skills-list {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            list-style: none;
+        }
+
+        .skill {
+            background-color: #1e293b;
+            padding: 15px 25px;
+            border-radius: 8px;
+            border: 1px solid #334155;
+            transition: 0.3s;
+        }
+
+        .skill:hover {
+            background-color: #0284c7;
+            transform: translateY(-4px);
+        }
+
+        /* =========================
+           7. PROJECTS - CSS GRID
+        ========================= */
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+            max-width: 1050px;
+            margin: auto;
+        }
+
+        .project-card {
+            background-color: #1e293b;
+            padding: 25px;
+            border-radius: 10px;
+            border: 1px solid #334155;
+            transition: 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: #38bdf8;
+        }
+
+        .project-card h3 {
+            color: #38bdf8;
+            margin-bottom: 12px;
+        }
+
+        .project-card p {
+            color: #cbd5e1;
+        }
+
+        /* =========================
+           8. CONTACT FORM
+        ========================= */
+
+        #contact form {
+            max-width: 550px;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #475569;
+            border-radius: 6px;
+            background-color: #1e293b;
+            color: white;
+            font: inherit;
+        }
+
+        input::placeholder,
+        textarea::placeholder {
+            color: #94a3b8;
+        }
+
+        textarea {
+            min-height: 130px;
+            resize: vertical;
+        }
+
+        button {
+            background-color: #0284c7;
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: #0369a1;
+        }
+
+        /* =========================
+           9. FOOTER
+        ========================= */
+
+        footer {
+            background-color: #1e293b;
+            text-align: center;
+            padding: 25px 5%;
+            color: #cbd5e1;
+        }
+
+        /* =========================
+           10. TABLET RESPONSIVENESS
+        ========================= */
+
+        @media (min-width: 600px) {
+
+            .project-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+        }
+
+        /* =========================
+           11. DESKTOP RESPONSIVENESS
+        ========================= */
+
+        @media (min-width: 900px) {
+
+            .project-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+
+        }
+
+        /* =========================
+           12. SMALL MOBILE SCREENS
+        ========================= */
+
+        @media (max-width: 380px) {
+
+            nav {
+                justify-content: center;
+            }
+
+            nav ul {
+                justify-content: center;
+                gap: 10px;
+            }
+
+            nav a {
+                font-size: 13px;
+            }
+
+            section h2 {
+                font-size: 1.6rem;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <a href="#main-content" class="skip-link">
+        Skip to main content
+    </a>
+
+    <!-- HEADER AND NAVIGATION -->
+
+    <header>
+
+        <nav aria-label="Main navigation">
+
+            <h2>Israel's Portfolio</h2>
+
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+
+        </nav>
+
+    </header>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main id="main-content">
+
+        <!-- HERO SECTION -->
+
+        <section class="hero" id="home">
+
+            <div>
+
+                <h1>
+                    Hello, I'm <span>Israel Ogundipe</span>
+                </h1>
+
+                <h3>Aspiring Web Developer</h3>
+
+                <p>
+                    I create simple, creative and responsive
+                    websites using modern web technologies.
+                </p>
+
+                <a href="#projects" class="btn">
+                    View My Work
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- ABOUT SECTION -->
+
+        <section id="about">
+
+            <h2>About Me</h2>
+
+            <p>
+                I am a student passionate about technology,
+                creativity and web development. I enjoy
+                learning new skills and building websites
+                using HTML5 and CSS3. My goal is to continue
+                improving my coding skills and become a
+                skilled web developer.
+            </p>
+
+        </section>
+
+
+        <!-- SKILLS SECTION -->
+
+        <section id="skills">
+
+            <h2>My Skills</h2>
+
+            <ul class="skills-list">
+
+                <li class="skill">HTML5</li>
+
+                <li class="skill">CSS3</li>
+
+                <li class="skill">JavaScript</li>
+
+                <li class="skill">Flexbox</li>
+
+                <li class="skill">CSS Grid</li>
+
+                <li class="skill">Responsive Design</li>
+
+                <li class="skill">Git and GitHub</li>
+
+            </ul>
+
+        </section>
+
+
+        <!-- PROJECTS SECTION -->
+
+        <section id="projects">
+
+            <h2>My Projects</h2>
+
+            <div class="project-grid">
+
+                <article class="project-card">
+
+                    <h3>Personal Portfolio</h3>
+
+                    <p>
+                        A personal portfolio website created
+                        with HTML5 and CSS3 to showcase my
+                        background, skills and projects.
+                    </p>
+
+                </article>
+
+
+                <article class="project-card">
+
+                    <h3>Responsive Landing Page</h3>
+
+                    <p>
+                        A website landing page designed to
+                        adapt to different screen sizes using
+                        CSS Flexbox and media queries.
+                    </p>
+
+                </article>
+
+
+                <article class="project-card">
+
+                    <h3>Student Website</h3>
+
+                    <p>
+                        A simple student website demonstrating
+                        my understanding of semantic HTML,
+                        CSS styling and responsive layouts.
+                    </p>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- CONTACT SECTION -->
+
+        <section id="contact">
+
+            <h2>Contact Me</h2>
+
+            <form
+                action="https://formsubmit.co/YOUR_EMAIL@example.com"
+                method="POST"
+            >
+
+                <input
+                    type="hidden"
+                    name="_subject"
+                    value="New Portfolio Contact Message"
+                >
+
+                <label for="name">Full Name</label>
+
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="Enter your full name"
+                    autocomplete="name"
+                    minlength="2"
+                    required
+                >
+
+
+                <label for="email">Email Address</label>
+
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Enter your email address"
+                    autocomplete="email"
+                    required
+                >
+
+
+                <label for="subject">Subject</label>
+
+                <input
+                    type="text"
+                    id="subject"
+                    name="subject"
+                    placeholder="Enter message subject"
+                    required
+                >
+
+
+                <label for="message">Your Message</label>
+
+                <textarea
+                    id="message"
+                    name="message"
+                    placeholder="Write your message here..."
+                    minlength="10"
+                    required
+                ></textarea>
+
+
+                <button type="submit">
+                    Send Message
+                </button>
+
+            </form>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+            &copy; 2026 IsReal enterprises.
+            All Rights Reserved.
+        </p>
+
+    </footer>
+
+</body>
+
+</html>
+
